@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Project</title>
+  <style>
+    :root {
+      --bg: #f4f6fb; --card: #ffffff; --text: #1d2433; --muted: #5d6679;
+      --border: #e1e6f0; --shadow: 0 6px 24px rgba(30, 41, 80, .08);
+      --c1: #2f7bf5; --c2: #2eb872; --c3: #8b5cf6;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #12151d; --card: #1b2030; --text: #e8ecf5; --muted: #9aa4ba;
+        --border: #2b3247; --shadow: 0 6px 24px rgba(0, 0, 0, .4);
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font-family: "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      line-height: 1.6;
+    }
+    header { text-align: center; padding: 56px 16px 24px; }
+    header h1 { margin: 0 0 8px; font-size: clamp(1.8rem, 4vw, 2.6rem); }
+    header p { margin: 0; color: var(--muted); }
+    .grid {
+      max-width: 1100px; margin: 0 auto; padding: 24px 16px 64px;
+      display: grid; gap: 24px; grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width: 860px) { .grid { grid-template-columns: 1fr; max-width: 480px; } }
+    .card {
+      --accent: var(--c1);
+      background: var(--card); border: 1px solid var(--border); border-top: 5px solid var(--accent);
+      border-radius: 16px; box-shadow: var(--shadow); padding: 28px 24px;
+      display: flex; flex-direction: column; transition: transform .15s;
+    }
+    .card:hover { transform: translateY(-4px); }
+    .card.currency { --accent: var(--c1); }
+    .card.snake { --accent: var(--c2); }
+    .card.todo { --accent: var(--c3); }
+    .icon {
+      width: 88px; height: 88px; border-radius: 22px; margin-bottom: 16px;
+      display: grid; place-items: center;
+      background: color-mix(in srgb, var(--accent) 14%, transparent);
+    }
+    .icon svg { width: 56px; height: 56px; }
+    .card h2 { margin: 0 0 4px; font-size: 1.35rem; }
+    .card .sub { margin: 0 0 12px; color: var(--accent); font-weight: 600; font-size: .9rem; }
+    .card p.desc { margin: 0 0 14px; color: var(--muted); }
+    .card ul { margin: 0 0 16px; padding-left: 1.1em; color: var(--muted); font-size: .93rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 22px; }
+    .tags span {
+      font-size: .78rem; padding: 3px 10px; border-radius: 999px;
+      background: color-mix(in srgb, var(--accent) 14%, transparent); color: var(--accent); font-weight: 600;
+    }
+    .btn {
+      margin-top: auto; text-align: center; text-decoration: none; font-weight: 700;
+      padding: 12px; border-radius: 10px; color: #fff; background: var(--accent);
+    }
+    .btn:hover { filter: brightness(1.1); }
+    .btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+    footer { text-align: center; padding: 0 16px 40px; color: var(--muted); font-size: .85rem; }
+    footer a { color: inherit; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Study Project</h1>
+    <p>바닐라 HTML · CSS · JavaScript로 만든 3가지 웹앱 모음</p>
+  </header>
+
+  <main class="grid">
+    <article class="card currency">
+      <div class="icon" aria-hidden="true">
+        <svg viewBox="0 0 64 64" fill="none" stroke="#2f7bf5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10 24h40l-9-9M54 40H14l9 9"/>
+          <circle cx="32" cy="32" r="0"/>
+        </svg>
+      </div>
+      <h2>환율 변환기</h2>
+      <p class="sub">Currency Converter</p>
+      <p class="desc">금액을 입력하고 통화를 고르면 즉시 환산 결과를 보여주는 변환기입니다.</p>
+      <ul>
+        <li>실시간 환율 API 연동, 실패 시 대략적인 환율로 대체</li>
+        <li>From/To 통화를 한 번에 바꾸는 스왑 버튼</li>
+        <li>잘못된 입력에 대한 오류 안내</li>
+      </ul>
+      <div class="tags"><span>Fetch API</span><span>폼 입력</span><span>실시간 계산</span></div>
+      <a class="btn" href="./currencyconverter/">앱 실행하기 →</a>
+    </article>
+
+    <article class="card snake">
+      <div class="icon" aria-hidden="true">
+        <svg viewBox="0 0 64 64" fill="none" stroke="#2eb872" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10 48h22V32h22V16"/>
+          <circle cx="54" cy="12" r="3" fill="#2eb872" stroke="none"/>
+          <circle cx="12" cy="18" r="4" fill="#ef4444" stroke="none"/>
+        </svg>
+      </div>
+      <h2>스네이크 게임</h2>
+      <p class="sub">Snake Game</p>
+      <p class="desc">방향키로 뱀을 조종해 먹이를 먹고 점수를 쌓는 클래식 아케이드 게임입니다.</p>
+      <ul>
+        <li>점수·최고점수·레벨·남은 시간 HUD</li>
+        <li>레벨 1~10 단계별 속도 조절</li>
+        <li>시작 / 일시정지 / 종료, 기록 저장</li>
+      </ul>
+      <div class="tags"><span>Canvas</span><span>키보드 입력</span><span>게임 루프</span></div>
+      <a class="btn" href="./snake-game/">게임 시작하기 →</a>
+    </article>
+
+    <article class="card todo">
+      <div class="icon" aria-hidden="true">
+        <svg viewBox="0 0 64 64" fill="none" stroke="#8b5cf6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="10" y="8" width="44" height="48" rx="8"/>
+          <path d="M20 24l5 5 9-10M20 44h24"/>
+        </svg>
+      </div>
+      <h2>할 일 목록</h2>
+      <p class="sub">To-Do List</p>
+      <p class="desc">할 일을 추가·완료·삭제하며 하루를 정리하는 간단한 체크리스트입니다.</p>
+      <ul>
+        <li>빈 값·중복 입력 검증</li>
+        <li>전체 / 진행중 / 완료 개수 및 필터</li>
+        <li>localStorage로 새로고침 후에도 유지</li>
+      </ul>
+      <div class="tags"><span>DOM 조작</span><span>localStorage</span><span>필터링</span></div>
+      <a class="btn" href="./To-Do/">앱 열기 →</a>
+    </article>
+  </main>
+
+  <footer>© Study Project · <a href="https://github.com/leeeungtaik-prog/study_project">GitHub</a></footer>
+</body>
+</html>
