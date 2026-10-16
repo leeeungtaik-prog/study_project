@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>나의 할 일 목록</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <h1>나의 할 일 목록</h1>
+
+    <!-- 할 일 입력 폼: 추가 버튼 클릭 / 엔터키 모두 submit으로 처리 -->
+    <form class="todo-form">
+      <input type="text" id="todo-input" placeholder="할 일을 입력하세요." autocomplete="off">
+      <button type="submit">추가</button>
+    </form>
+    <!-- 빈 값 / 중복 입력 시 오류 메시지가 표시되는 곳 -->
+    <p id="error-message" class="error-message" role="alert"></p>
+
+    <!-- 전체 / 진행중 / 완료 개수 (main.js가 숫자를 갱신) -->
+    <div class="summary">
+      <span>전체 <strong id="count-total">0</strong></span>
+      <span>진행중 <strong id="count-active">0</strong></span>
+      <span>완료 <strong id="count-done">0</strong></span>
+    </div>
+
+    <!-- 필터 버튼: data-filter 값으로 어떤 항목을 보여줄지 결정 -->
+    <div class="filters" id="filters">
+      <button type="button" class="filter-btn active" data-filter="all">전체</button>
+      <button type="button" class="filter-btn" data-filter="active">진행중</button>
+      <button type="button" class="filter-btn" data-filter="done">완료</button>
+    </div>
+
+    <!-- 일괄 처리 영역 (보이는 할 일이 없으면 숨김) -->
+    <div class="bulk-bar" id="bulk-bar" hidden>
+      <label class="select-all">
+        <input type="checkbox" id="select-all">
+        <span>전체 선택</span>
+      </label>
+      <div class="bulk-actions">
+        <button type="button" id="bulk-complete-btn" class="bulk-complete-btn" disabled>선택 완료</button>
+        <button type="button" id="bulk-delete-btn" class="bulk-delete-btn" disabled>선택 삭제</button>
+      </div>
+    </div>
+
+    <!-- 할 일 목록 영역 (항목은 main.js가 채움) -->
+    <ul id="todo-list" class="todo-list"></ul>
+
+    <!-- 완료 히스토리: 버튼으로 열고 닫는 패널 -->
+    <div class="history-area">
+      <button type="button" id="history-toggle" class="history-toggle" aria-expanded="false">완료 히스토리 (0)</button>
+      <section id="history-panel" class="history-panel" hidden>
+        <div class="history-header">
+          <h2>완료 히스토리</h2>
+          <button type="button" id="history-clear" class="history-clear">기록 지우기</button>
+        </div>
+        <ul id="history-list" class="history-list"></ul>
+      </section>
+    </div>
+
+    <!-- 초기화 버튼: 저장된 모든 데이터를 지우고 처음 상태로 되돌림 -->
+    <button type="button" id="reset-btn" class="reset-btn">전체 초기화</button>
+  </main>
+
+  <!-- 기능 구현 스크립트 (DOM이 만들어진 뒤 실행되도록 body 끝에 위치) -->
+  <script src="main.js"></script>
+</body>
+</html>

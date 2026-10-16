@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>숲속 스네이크</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game-wrap">
+    <h1>🌿 숲속 스네이크 🐍</h1>
+
+    <section class="hud">
+      <div class="stat"><span class="label">점수</span><span id="score">0</span></div>
+      <div class="stat"><span class="label">최고점수</span><span id="best">0</span></div>
+      <div class="stat"><span class="label">레벨</span><span id="level">3</span></div>
+      <div class="stat"><span class="label">남은 시간</span><span id="timer">10</span></div>
+    </section>
+
+    <div class="board-frame">
+      <canvas id="board" width="480" height="480"></canvas>
+      <div id="overlay" class="overlay">
+        <p id="overlay-title">숲속 스네이크</p>
+        <p id="overlay-sub">시작 버튼(또는 엔터키)을 누르고 방향키로 이동하세요</p>
+      </div>
+    </div>
+
+    <section class="controls">
+      <button id="btn-start" class="btn primary">시작</button>
+      <button id="btn-pause" class="btn" disabled>일시정지</button>
+      <button id="btn-stop" class="btn danger" disabled>종료</button>
+    </section>
+
+    <section class="controls">
+      <button id="btn-level-down" class="btn small" aria-label="레벨 낮추기">− 느리게</button>
+      <button id="btn-level-up" class="btn small" aria-label="레벨 높이기">+ 빠르게</button>
+      <button id="btn-scores" class="btn small">점수기록 보기</button>
+    </section>
+
+    <p class="help">방향키 / WASD 이동 · 엔터 시작 · 스페이스바 일시정지 · 먹이 +10점 · 10초 안에 못 먹으면 −10점</p>
+  </main>
+
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-box">
+      <h2 id="modal-title">🏆 최고 점수 TOP 5</h2>
+      <ol id="score-list"></ol>
+      <button id="btn-close" class="btn primary">닫기</button>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
